@@ -57,10 +57,10 @@ public:
 	void setAltCharacter(char character) { m_characters.alt = character; }
 	void setSeparationCharacter(char character) { m_characters.separation = character; }
 	void setCapitalCharacter(char character) { m_characters.capital = character; }
-	void setCurrentBankAlt(unsigned int alt) { setBankAlt(m_currentBank, alt); }
+	void setCurrentBankAlt(std::size_t alt) { setBankAlt(m_currentBank, alt); }
 	void setGlobalAlt(int globalAlt) { m_globalAlt = globalAlt; }
-	void setBankAlt(std::size_t bankIndex, unsigned int alt);
-	void setControlNumberBase(unsigned int controlNumberBase) { m_controlNumberBase = static_cast<int>(controlNumberBase); }
+	void setBankAlt(std::size_t bankIndex, std::size_t alt);
+	void setControlNumberBase(std::size_t controlNumberBase) { m_controlNumberBase = static_cast<int>(controlNumberBase); }
 	void setControlLimits(std::size_t lowerLimit, std::size_t upperLimit) { m_controlLimits = { lowerLimit, upperLimit }; }
 	void setLocale(const std::locale& locale) { m_locale = locale; }
 	void setIsProcessCapitalEnabled(bool isProcessCapitalEnabled) { m_isProcessCapitalEnabled = isProcessCapitalEnabled; }
@@ -82,7 +82,7 @@ public:
 	bool getCurrentBankAlt() const { return getBankAlt(m_currentBank); }
 	int getGlobalAlt() const { return m_globalAlt; }
 	bool getBankAlt(std::size_t bankIndex) const;
-	unsigned int getControlNumberBase() const { return static_cast<unsigned int>(m_controlNumberBase); }
+	std::size_t getControlNumberBase() const { return static_cast<std::size_t>(m_controlNumberBase); }
 	std::size_t getControlLowerLimit() const { return m_controlLimits.first; }
 	std::size_t getControlUpperLimit() const { return m_controlLimits.second; }
 	std::locale getLocale() const { return m_locale; }
@@ -111,7 +111,7 @@ private:
 	std::locale m_locale;
 	struct Bank
 	{
-		unsigned int alt{ 0u }; // zero-based index
+		std::size_t alt{ 0u }; // zero-based index
 		std::vector<std::string> strings;
 	};
 	std::vector<Bank> m_banks;

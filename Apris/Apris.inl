@@ -56,7 +56,7 @@ inline bool Apris::setCurrentBank(const std::size_t bankIndex)
 	return success;
 }
 
-inline void Apris::setBankAlt(const std::size_t bankIndex, const unsigned int alt)
+inline void Apris::setBankAlt(const std::size_t bankIndex, const std::size_t alt)
 {
 	if (isBankIndexValid(bankIndex))
 		m_banks[bankIndex].alt = alt;
@@ -224,7 +224,7 @@ std::string Apris::priv_process(const std::string& string, const bool isAlt, con
 	}
 
 	// pair up limiters (as position and length)
-	std::vector<std::pair<unsigned int, unsigned int>> limiterPairs;
+	std::vector<std::pair<std::size_t, std::size_t>> limiterPairs;
 	for (std::size_t i{ 0u }; i < limiterPositions.size() / 2u; ++i)
 	{
 		const std::size_t first{ limiterPositions[i * 2u] };
